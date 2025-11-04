@@ -154,26 +154,7 @@
             z-index: 199;
         }
 
-        /* 6. ESTILOS DO CONTEÚDO (HERO, CARDS, SECTIONS) */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
+        /* 6. ESTILOS DO CONTEÚDO (CARDS, SECTIONS) */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -182,7 +163,9 @@
 
         .section {
             margin: 2rem 0 4rem 0;
-            padding-top: 3rem; /* Espaço para o header sticky */
+            /* O padding-top é essencial para o scroll-behavior não
+               colar o título no topo da página */
+            padding-top: 4rem; 
         }
 
         .section-title {
@@ -195,84 +178,9 @@
 
         .section-subtitle {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 1.25rem;
+            font-weight: 300;
             margin-bottom: 2rem;
-        }
-
-        /* Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            border: 1px solid var(--border);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .card-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-link:hover {
-            color: var(--primary-dark);
-        }
-
-        /* Quick Start */
-        .quick-start {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--secondary);
-        }
-
-        .quick-start ol {
-            padding-left: 1.5rem;
-        }
-
-        .quick-start li {
-            margin: 1rem 0;
-            color: var(--text-dark);
-        }
-
-        .quick-start a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
         }
         
         /* Estilos da Página de Conteúdo (Tabelas, Código, etc.) */
@@ -281,7 +189,7 @@
             border-radius: 12px;
             padding: 2rem 3rem;
             box-shadow: var(--shadow);
-            margin-top: 2rem;
+            margin-top: 1rem; /* Ajustado */
         }
 
         .content-page h2 {
@@ -312,6 +220,11 @@
 
         .content-page li {
             margin-bottom: 0.5rem;
+        }
+        
+        /* Ajuste para listas dentro da .content-page */
+        .content-page ul li {
+            margin-bottom: 0.75rem;
         }
 
         .content-page table {
@@ -393,18 +306,6 @@
             .overlay.is-open {
                 display: block; /* Mostra o overlay escuro */
             }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
             
             .content-page {
                 padding: 1.5rem;
@@ -431,7 +332,6 @@
                 <h3>Menu</h3>
                 <ul>
                     <li><a href="#home" class="nav-link active">Início</a></li>
-                    <li><a href="#navegacao" class="nav-link">Navegação Rápida</a></li>
                 </ul>
                 
                 <h3>Documentação</h3>
@@ -452,77 +352,25 @@
 
         <main class="main-content">
             
-            <section class="hero" id="home">
-                <h1>Overdraft - Documentação do Time</h1>
-                <p>Documentação oficial do projeto de Cheque Especial para o trabalho acadêmico. Padrões, processos e guias técnicos centralizados.</p>
-            </section>
-
             <div class="container">
-                <section class="section">
-                    <h2 class="section-title">Sobre o Projeto</h2>
-                    <p class="section-subtitle">O Overdraft é um sistema de crédito automático que permite aos clientes completarem transações mesmo quando o saldo em conta é insuficiente, utilizando um limite pré-aprovado.</p>
-                </section>
-
-                <section class="section" id="navegacao">
-                    <h2 class="section-title">Navegação Rápida</h2>
-                    
-                    <div class="cards-grid">
-                        <div class="card" onclick="location.href='#padronizacao'">
-                            <div class="card-icon">📋</div>
-                            <h3>Padronização</h3>
-                            <p>Convenções de código, nomenclatura, estrutura de projetos e APIs.</p>
-                            <a href="#padronizacao" class="card-link">Acessar →</a>
-                        </div>
-        
-                        <div class="card" onclick="location.href='#produto'">
-                            <div class="card-icon">🎯</div>
-                            <h3>Produto</h3>
-                            <p>Contexto do negócio, funcionalidades e glossário completo.</p>
-                            <a href="#produto" class="card-link">Acessar →</a>
-                        </div>
-        
-                        <div class="card" onclick="location.href='#documentacao'">
-                            <div class="card-icon">📚</div>
-                            <h3>Documentação</h3>
-                            <p>Estrutura, benefícios e como manter a documentação atualizada.</p>
-                            <a href="#documentacao" class="card-link">Acessar →</a>
-                        </div>
-        
-                        <div class="card" onclick="location.href='#governanca'">
-                            <div class="card-icon">⚖️</div>
-                            <h3>Governança</h3>
-                            <p>Responsabilidades, processos de aprovação e manutenção.</p>
-                            <a href="#governanca" class="card-link">Acessar →</a>
-                        </div>
-        
-                        <div class="card" onclick="location.href='#templates'">
-                            <div class="card-icon">📝</div>
-                            <h3>Templates</h3>
-                            <p>Templates prontos para ADRs, Runbooks e PRDs.</p>
-                            <a href="#templates" class="card-link">Acessar →</a>
-                        </div>
-        
-                        <div class="card" onclick="window.open('https://github.com', '_blank')">
-                            <div class="card-icon">💻</div>
-                            <h3>GitHub</h3>
-                            <p>Acesse o repositório do projeto no GitHub.</p>
-                            <a href="https://github.com" target="_blank" class="card-link">Acessar →</a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section">
-                    <h2 class="section-title">Início Rápido</h2>
-                    <div class="quick-start">
-                        <ol>
-                            <li><strong>Novo no projeto?</strong> Comece pelo <a href="#produto">Contexto do Produto</a></li>
-                            <li><strong>Vai desenvolver?</strong> Veja <a href="#padronizacao">Padronização e Convenções</a></li>
-                            <li><strong>Precisa documentar?</strong> Use os <a href="#templates">Templates</a></li>
-                            <li><strong>Dúvidas sobre processos?</strong> Consulte <a href="#governanca">Governança</a></li>
-                        </ol>
-                    </div>
-                </section>
                 
+                <section class="section" id="home"> 
+                    <h2 class="section-title">Sobre o Projeto: Overdraft 📊</h2>
+                    <p class="section-subtitle">Bem-vindo(a) à documentação do nosso projeto de Cheque Especial!</p>
+                    
+                    <div class="content-page">
+                        <p>Este site centraliza toda a documentação técnica e de produto para o nosso <strong>trabalho acadêmico</strong>. O projeto <strong>Overdraft</strong> é um sistema focado em conceder crédito automático (cheque especial) para clientes do "Banco Tangaratiba" quando o saldo em conta é insuficiente.</p>
+                        <p>Mais do que apenas um sistema de crédito, nosso foco é garantir <strong>total transparência e controle</strong> para o cliente, com regras claras de contratação, uso e liquidação.</p>
+                        <p>Aqui você encontrará tudo o que precisa:</p>
+                        <ul>
+                            <li>Nossos <strong>padrões de código</strong> e convenções (Git, APIs, etc.).</li>
+                            <li>O <strong>contexto de produto</strong> detalhado e os requisitos.</li>
+                            <li>A <strong>estratégia de documentação</strong> que estamos usando (e por quê).</li>
+                        </ul>
+                        <p>Use o menu ao lado para navegar pelas seções e explorar o projeto.</p>
+                    </div>
+                </section>
+
                 <section class="section" id="padronizacao">
                     <h2 class="section-title">📋 Padronização</h2>
                     <div class="content-page">
@@ -664,7 +512,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Transparência</strong></td>
-                                    <td>Facilita auditoria e compartilhamento (ex: professores, times de auditoria).</td>
+                                    <td>Facilitaria auditoria e compartilhamento (ex: professores, times de auditoria).</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Formatação padrão</strong></td>
@@ -679,6 +527,7 @@
                     <h2 class="section-title">⚖️ Governança</h2>
                     <div class="content-page">
                         <p>Conteúdo sobre governança, responsabilidades e processos de aprovação será adicionado aqui.</p>
+                        <p>Esta seção definirá quem aprova o quê, como lidamos com mudanças nos requisitos e quais são os papéis de cada membro da equipe acadêmica.</p>
                     </div>
                 </section>
         
@@ -686,17 +535,25 @@
                     <h2 class="section-title">📝 Templates</h2>
                     <div class="content-page">
                         <p>Links para templates de ADRs, Runbooks e PRDs serão adicionados aqui.</p>
+                        <p>Para manter a consistência, usaremos templates padronizados para:</p>
+                        <ul>
+                            <li><strong>ADR (Architecture Decision Record):</strong> Para registrar decisões de arquitetura importantes.</li>
+                            <li><strong>PRD (Product Requirements Document):</strong> Para definir novas funcionalidades.</li>
+                            <li><strong>Runbook:</strong> Para documentar procedimentos operacionais.</li>
+                        </ul>
                     </div>
                 </section>
                 
                 <section class="section" id="contribuindo">
                     <h2 class="section-title">Contribuindo</h2>
-                    <p>Esta documentação é viva e evolui com o projeto. Todas as alterações devem:</p>
-                    <ul style="margin-left: 2rem; margin-top: 1rem; color: var(--text-light);">
-                        <li>Seguir os padrões estabelecidos</li>
-                        <li>Passar por revisão de PR</li>
-                        <li>Ser aprovadas pelo time técnico</li>
-                    </ul>
+                    <div class="content-page">
+                        <p>Esta documentação é viva e evolui com o projeto. Todas as alterações devem:</p>
+                        <ul>
+                            <li>Seguir os padrões estabelecidos</li>
+                            <li>Passar por revisão de PR (Pull Request)</li>
+                            <li>Ser aprovadas pelo time técnico (membros do grupo)</li>
+                        </ul>
+                    </div>
                 </section>
 
                 <footer>
@@ -739,9 +596,13 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        const headerOffset = 80; // Espaço para header fixo
+                        // O offset é o padding-top da .section
+                        const style = window.getComputedStyle(targetElement);
+                        const paddingTop = parseFloat(style.paddingTop); 
+                        
                         const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        // Subtrai 10px para dar uma leve margem
+                        const offsetPosition = elementPosition + window.pageYOffset - (paddingTop / 2);
                 
                         window.scrollTo({
                              top: offsetPosition,
@@ -755,7 +616,7 @@
 
             // Highlight do link ativo enquanto rola a página
             window.addEventListener('scroll', () => {
-                let current = '';
+                let current = 'home'; // Default to home
                 
                 // O 150 é um offset para "sentir" a seção um pouco antes
                 sections.forEach(section => {
@@ -764,11 +625,6 @@
                         current = section.getAttribute('id');
                     }
                 });
-
-                // Se o scroll estiver no topo, ativa o "Início"
-                if (window.scrollY < 300) {
-                    current = 'home';
-                }
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
