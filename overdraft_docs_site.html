@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overdraft - Documentação do Time</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-dark);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-link:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Section */
+        .section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Quick Start */
+        .quick-start {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .quick-start ol {
+            padding-left: 1.5rem;
+        }
+
+        .quick-start li {
+            margin: 1rem 0;
+            color: var(--text-dark);
+        }
+
+        .quick-start a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Content Page Styles */
+        .content-page {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .content-page h1 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .content-page h2 {
+            color: var(--text-dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-page h3 {
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-page table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .content-page th,
+        .content-page td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .content-page th {
+            background: var(--bg-light);
+            font-weight: 600;
+        }
+
+        .content-page code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .content-page pre {
+            background: var(--bg-dark);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .content-page pre code {
+            background: transparent;
+            color: white;
+            padding: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">📊 Overdraft Docs</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#padronizacao">Padronização</a></li>
+                    <li><a href="#produto">Produto</a></li>
+                    <li><a href="#documentacao">Documentação</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Overdraft - Documentação do Time</h1>
+        <p>Documentação oficial do projeto de Cheque Especial. Padrões, processos e guias técnicos centralizados.</p>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">Sobre o Projeto</h2>
+            <p class="section-subtitle">O Overdraft é um sistema de crédito automático que permite aos clientes completarem transações mesmo quando o saldo em conta é insuficiente, utilizando um limite pré-aprovado.</p>
+        </section>
+
+        <section class="section" id="navegacao">
+            <h2 class="section-title">Navegação Rápida</h2>
+            
+            <div class="cards-grid">
+                <div class="card" onclick="location.href='#padronizacao'">
+                    <div class="card-icon">📋</div>
+                    <h3>Padronização</h3>
+                    <p>Convenções de código, nomenclatura, estrutura de projetos e APIs.</p>
+                    <a href="#padronizacao" class="card-link">Acessar →</a>
+                </div>
+
+                <div class="card" onclick="location.href='#produto'">
+                    <div class="card-icon">🎯</div>
+                    <h3>Produto</h3>
+                    <p>Contexto do negócio, funcionalidades e glossário completo.</p>
+                    <a href="#produto" class="card-link">Acessar →</a>
+                </div>
+
+                <div class="card" onclick="location.href='#documentacao'">
+                    <div class="card-icon">📚</div>
+                    <h3>Documentação</h3>
+                    <p>Estrutura, benefícios e como manter a documentação atualizada.</p>
+                    <a href="#documentacao" class="card-link">Acessar →</a>
+                </div>
+
+                <div class="card" onclick="location.href='#governanca'">
+                    <div class="card-icon">⚖️</div>
+                    <h3>Governança</h3>
+                    <p>Responsabilidades, processos de aprovação e manutenção.</p>
+                    <a href="#governanca" class="card-link">Acessar →</a>
+                </div>
+
+                <div class="card" onclick="location.href='#templates'">
+                    <div class="card-icon">📝</div>
+                    <h3>Templates</h3>
+                    <p>Templates prontos para ADRs, Runbooks e PRDs.</p>
+                    <a href="#templates" class="card-link">Acessar →</a>
+                </div>
+
+                <div class="card" onclick="window.open('https://github.com', '_blank')">
+                    <div class="card-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p>Acesse o repositório do projeto no GitHub.</p>
+                    <a href="https://github.com" target="_blank" class="card-link">Acessar →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Início Rápido</h2>
+            <div class="quick-start">
+                <ol>
+                    <li><strong>Novo no projeto?</strong> Comece pelo <a href="#produto">Contexto do Produto</a></li>
+                    <li><strong>Vai desenvolver?</strong> Veja <a href="#padronizacao">Padronização e Convenções</a></li>
+                    <li><strong>Precisa documentar?</strong> Use os <a href="#templates">Templates</a></li>
+                    <li><strong>Dúvidas sobre processos?</strong> Consulte <a href="#governanca">Governança</a></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Contribuindo</h2>
+            <p>Esta documentação é viva e evolui com o projeto. Todas as alterações devem:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem; color: var(--text-light);">
+                <li>Seguir os padrões estabelecidos</li>
+                <li>Passar por revisão de PR</li>
+                <li>Ser aprovadas pelo time técnico</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Overdraft Project. Documentação mantida pelo time técnico.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Última atualização: Novembro 2025</p>
+    </footer>
+
+    <script>
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight nav item ativo
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--secondary)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
