@@ -336,8 +336,8 @@
                 
                 <h3>Documentação</h3>
                 <ul>
-                    <li><a href="#padronizacao" class="nav-link">Padronização</a></li>
                     <li><a href="#produto" class="nav-link">Produto</a></li>
+                    <li><a href="#padronizacao" class="nav-link">Padronização</a></li>
                     <li><a href="#documentacao" class="nav-link">Documentação</a></li>
                 </ul>
 
@@ -370,7 +370,44 @@
                         <p>Use o menu ao lado para navegar pelas seções e explorar o projeto.</p>
                     </div>
                 </section>
-
+                <section class="section" id="produto">
+                    <h2 class="section-title">🎯 Produto: Sistema de Cheque Especial</h2>
+                    <div class="content-page">
+                        <h2>Contexto do Produto</h2>
+                        <p><strong>O que o produto faz:</strong> Concede crédito automaticamente até o máximo contratado quando o cliente fica sem saldo na conta corrente.</p>
+                        <p><strong>Exemplo:</strong> Quando o cliente (do Banco Tangaratiba) faz pagamento ou transferência que excede o saldo em conta corrente, o sistema completa com o limite extra necessário dentro do limite máximo contratado (LTC).</p>
+                        <p><strong>Foco:</strong> Contratação, controle e transparência do uso do crédito.</p>
+                        <p><strong>Público alvo:</strong> Clientes correntistas do banco Tangaratiba.</p>
+        
+                        <h2>Etapas e Requisitos</h2>
+                        
+                        <h3>Requisitos Funcionais</h3>
+                        <ul>
+                            <li><strong>Ativação automática:</strong> Ativação do crédito respeitando o limite máximo; basta o saldo ser negativo para ativar (core do produto).</li>
+                            <li><strong>Cálculo e Cobrança:</strong> Cálculo e cobrança de juros e IOF diariamente (regra de negócio crítica).</li>
+                            <li><strong>Ajuste de Limite:</strong> Ajuste do limite contratado de acordo com disponibilidade (usabilidade e necessidade).</li>
+                            <li><strong>Consulta:</strong> Consulta do limite contratado sem uso (disponível) (usabilidade e transparência).</li>
+                            <li><strong>Registro e Notificação:</strong> Registro da transação de crédito e notificação (usabilidade e transparência).</li>
+                            <li><strong>Liquidação:</strong> Liquidação automática quando houver novo saldo na conta (regra de negócio).</li>
+                        </ul>
+        
+                        <h3>Requisitos Não Funcionais</h3>
+                        <ul>
+                            <li><strong>Segurança:</strong> Normas do Bacen e criptografia (risco regulatório alto e de imagem).</li>
+                            <li><strong>Latência:</strong> 200 ms (performance).</li>
+                            <li><strong>Disponibilidade:</strong> 99,0% (operações e imagem/confiança do cliente).</li>
+                            <li><strong>Escalabilidade:</strong> Aumento de 50% nas transações nos períodos de pico (datas de recebimento de salário, ou final de mês) (arquitetura).</li>
+                        </ul>
+        
+                        <h3>Análise de Riscos e Dependências</h3>
+                        <ul>
+                            <li><strong>Falha de segurança:</strong> Fraude ou falha de criptografia/autenticação. (Dependência: SecOps - equipe de segurança).</li>
+                            <li><strong>Regulatório/Legal:</strong> Mudança em taxas de juros ou regras do Bacen. (Dependência: API do banco central e área jurídica).</li>
+                            <li><strong>Operacional:</strong> Falha no banco de dados. (Dependência: Sistemas de banco de dados e observability).</li>
+                            <li><strong>Técnico:</strong> Falha na integração com outros módulos (ex: extrato). (Dependência: Módulo/API de extrato).</li>
+                        </ul>
+                    </div>
+                </section>
                 <section class="section" id="padronizacao">
                     <h2 class="section-title">📋 Padronização</h2>
                     <div class="content-page">
@@ -442,47 +479,7 @@
         └─ README.md
         </code></pre>
                     </div>
-                </section>
-        
-                <section class="section" id="produto">
-                    <h2 class="section-title">🎯 Produto: Sistema de Cheque Especial</h2>
-                    <div class="content-page">
-                        <h2>Contexto do Produto</h2>
-                        <p><strong>O que o produto faz:</strong> Concede crédito automaticamente até o máximo contratado quando o cliente fica sem saldo na conta corrente.</p>
-                        <p><strong>Exemplo:</strong> Quando o cliente (do Banco Tangaratiba) faz pagamento ou transferência que excede o saldo em conta corrente, o sistema completa com o limite extra necessário dentro do limite máximo contratado (LTC).</p>
-                        <p><strong>Foco:</strong> Contratação, controle e transparência do uso do crédito.</p>
-                        <p><strong>Público alvo:</strong> Clientes correntistas do banco Tangaratiba.</p>
-        
-                        <h2>Etapas e Requisitos</h2>
-                        
-                        <h3>Requisitos Funcionais</h3>
-                        <ul>
-                            <li><strong>Ativação automática:</strong> Ativação do crédito respeitando o limite máximo; basta o saldo ser negativo para ativar (core do produto).</li>
-                            <li><strong>Cálculo e Cobrança:</strong> Cálculo e cobrança de juros e IOF diariamente (regra de negócio crítica).</li>
-                            <li><strong>Ajuste de Limite:</strong> Ajuste do limite contratado de acordo com disponibilidade (usabilidade e necessidade).</li>
-                            <li><strong>Consulta:</strong> Consulta do limite contratado sem uso (disponível) (usabilidade e transparência).</li>
-                            <li><strong>Registro e Notificação:</strong> Registro da transação de crédito e notificação (usabilidade e transparência).</li>
-                            <li><strong>Liquidação:</strong> Liquidação automática quando houver novo saldo na conta (regra de negócio).</li>
-                        </ul>
-        
-                        <h3>Requisitos Não Funcionais</h3>
-                        <ul>
-                            <li><strong>Segurança:</strong> Normas do Bacen e criptografia (risco regulatório alto e de imagem).</li>
-                            <li><strong>Latência:</strong> 200 ms (performance).</li>
-                            <li><strong>Disponibilidade:</strong> 99,0% (operações e imagem/confiança do cliente).</li>
-                            <li><strong>Escalabilidade:</strong> Aumento de 50% nas transações nos períodos de pico (datas de recebimento de salário, ou final de mês) (arquitetura).</li>
-                        </ul>
-        
-                        <h3>Análise de Riscos e Dependências</h3>
-                        <ul>
-                            <li><strong>Falha de segurança:</strong> Fraude ou falha de criptografia/autenticação. (Dependência: SecOps - equipe de segurança).</li>
-                            <li><strong>Regulatório/Legal:</strong> Mudança em taxas de juros ou regras do Bacen. (Dependência: API do banco central e área jurídica).</li>
-                            <li><strong>Operacional:</strong> Falha no banco de dados. (Dependência: Sistemas de banco de dados e observability).</li>
-                            <li><strong>Técnico:</strong> Falha na integração com outros módulos (ex: extrato). (Dependência: Módulo/API de extrato).</li>
-                        </ul>
-                    </div>
-                </section>
-        
+                </section>        
                 <section class="section" id="documentacao">
                     <h2 class="section-title">📚 Documentação</h2>
                     <div class="content-page">
