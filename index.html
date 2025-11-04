@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overdraft - Documentação do Time</title>
+    <style>
+        /* 1. VARIÁVEIS E RESET */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --bg-dark: #0f172a; /* Cor da sidebar */
+            --bg-light: #f8fafc; /* Cor do fundo do conteúdo */
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --text-sidebar: #e2e8f0; /* Cor do texto na sidebar */
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --sidebar-width: 260px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* 2. LAYOUT PRINCIPAL (DESKTOP) */
+        .layout-wrapper {
+            display: flex;
+        }
+
+        /* 3. SIDEBAR (NAVEGAÇÃO LATERAL) */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--bg-dark);
+            color: var(--text-sidebar);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 200;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 2.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .sidebar-nav h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            padding: 0 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .sidebar-nav a {
+            color: var(--text-sidebar);
+            text-decoration: none;
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 4. ÁREA DE CONTEÚDO PRINCIPAL */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 0;
+        }
+
+        /* 5. HEADER MOBILE */
+        .mobile-header {
+            display: none; /* Escondido no desktop */
+            background: var(--bg-dark);
+            color: white;
+            padding: 0.75rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-header .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 199;
+        }
+
+        /* 6. ESTILOS DO CONTEÚDO (HERO, CARDS, SECTIONS) */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 2rem 0 4rem 0;
+            padding-top: 3rem; /* Espaço para o header sticky */
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-link:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Quick Start */
+        .quick-start {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .quick-start ol {
+            padding-left: 1.5rem;
+        }
+
+        .quick-start li {
+            margin: 1rem 0;
+            color: var(--text-dark);
+        }
+
+        .quick-start a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Estilos da Página de Conteúdo (Tabelas, Código, etc.) */
+        .content-page {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 2rem 3rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .content-page h2 {
+            color: var(--text-dark);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .content-page h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .content-page p,
+        .content-page ul,
+        .content-page ol {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .content-page ul,
+        .content-page ol {
+            padding-left: 1.5rem;
+        }
+
+        .content-page li {
+            margin-bottom: 0.5rem;
+        }
+
+        .content-page table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .content-page th,
+        .content-page td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .content-page th {
+            background: var(--bg-light);
+            font-weight: 600;
+        }
+
+        .content-page code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+
+        .content-page pre {
+            background: var(--bg-dark);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .content-page pre code {
+            background: transparent;
+            color: white;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* 7. LAYOUT RESPONSIVO (MOBILE) */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%); /* Esconde a sidebar fora da tela */
+                box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            }
+            .sidebar.is-open {
+                transform: translateX(0); /* Mostra a sidebar */
+            }
+
+            .main-content {
+                margin-left: 0; /* Conteúdo ocupa 100% */
+                width: 100%;
+            }
+
+            .mobile-header {
+                display: flex; /* Mostra o header mobile */
+            }
+
+            .overlay.is-open {
+                display: block; /* Mostra o overlay escuro */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-page {
+                padding: 1.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="mobile-header">
+        <a href="#home" class="logo">📊 Overdraft Docs</a>
+        <button id="menu-toggle">☰</button>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="layout-wrapper">
+        
+        <aside class="sidebar" id="sidebar">
+            <a href="#home" class="logo">📊 Overdraft Docs</a>
+            
+            <nav class="sidebar-nav">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="#home" class="nav-link active">Início</a></li>
+                    <li><a href="#navegacao" class="nav-link">Navegação Rápida</a></li>
+                </ul>
+                
+                <h3>Documentação</h3>
+                <ul>
+                    <li><a href="#padronizacao" class="nav-link">Padronização</a></li>
+                    <li><a href="#produto" class="nav-link">Produto</a></li>
+                    <li><a href="#documentacao" class="nav-link">Documentação</a></li>
+                </ul>
+
+                <h3>Outros</h3>
+                <ul>
+                    <li><a href="#governanca" class="nav-link">Governança</a></li>
+                    <li><a href="#templates" class="nav-link">Templates</a></li>
+                    <li><a href="#contribuindo" class="nav-link">Contribuindo</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+            <section class="hero" id="home">
+                <h1>Overdraft - Documentação do Time</h1>
+                <p>Documentação oficial do projeto de Cheque Especial para o trabalho acadêmico. Padrões, processos e guias técnicos centralizados.</p>
+            </section>
+
+            <div class="container">
+                <section class="section">
+                    <h2 class="section-title">Sobre o Projeto</h2>
+                    <p class="section-subtitle">O Overdraft é um sistema de crédito automático que permite aos clientes completarem transações mesmo quando o saldo em conta é insuficiente, utilizando um limite pré-aprovado.</p>
+                </section>
+
+                <section class="section" id="navegacao">
+                    <h2 class="section-title">Navegação Rápida</h2>
+                    
+                    <div class="cards-grid">
+                        <div class="card" onclick="location.href='#padronizacao'">
+                            <div class="card-icon">📋</div>
+                            <h3>Padronização</h3>
+                            <p>Convenções de código, nomenclatura, estrutura de projetos e APIs.</p>
+                            <a href="#padronizacao" class="card-link">Acessar →</a>
+                        </div>
+        
+                        <div class="card" onclick="location.href='#produto'">
+                            <div class="card-icon">🎯</div>
+                            <h3>Produto</h3>
+                            <p>Contexto do negócio, funcionalidades e glossário completo.</p>
+                            <a href="#produto" class="card-link">Acessar →</a>
+                        </div>
+        
+                        <div class="card" onclick="location.href='#documentacao'">
+                            <div class="card-icon">📚</div>
+                            <h3>Documentação</h3>
+                            <p>Estrutura, benefícios e como manter a documentação atualizada.</p>
+                            <a href="#documentacao" class="card-link">Acessar →</a>
+                        </div>
+        
+                        <div class="card" onclick="location.href='#governanca'">
+                            <div class="card-icon">⚖️</div>
+                            <h3>Governança</h3>
+                            <p>Responsabilidades, processos de aprovação e manutenção.</p>
+                            <a href="#governanca" class="card-link">Acessar →</a>
+                        </div>
+        
+                        <div class="card" onclick="location.href='#templates'">
+                            <div class="card-icon">📝</div>
+                            <h3>Templates</h3>
+                            <p>Templates prontos para ADRs, Runbooks e PRDs.</p>
+                            <a href="#templates" class="card-link">Acessar →</a>
+                        </div>
+        
+                        <div class="card" onclick="window.open('https://github.com', '_blank')">
+                            <div class="card-icon">💻</div>
+                            <h3>GitHub</h3>
+                            <p>Acesse o repositório do projeto no GitHub.</p>
+                            <a href="https://github.com" target="_blank" class="card-link">Acessar →</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Início Rápido</h2>
+                    <div class="quick-start">
+                        <ol>
+                            <li><strong>Novo no projeto?</strong> Comece pelo <a href="#produto">Contexto do Produto</a></li>
+                            <li><strong>Vai desenvolver?</strong> Veja <a href="#padronizacao">Padronização e Convenções</a></li>
+                            <li><strong>Precisa documentar?</strong> Use os <a href="#templates">Templates</a></li>
+                            <li><strong>Dúvidas sobre processos?</strong> Consulte <a href="#governanca">Governança</a></li>
+                        </ol>
+                    </div>
+                </section>
+                
+                <section class="section" id="padronizacao">
+                    <h2 class="section-title">📋 Padronização</h2>
+                    <div class="content-page">
+                        <h2>Padrões e Nomenclaturas</h2>
+                        
+                        <h3>Convenções de Nomenclatura</h3>
+                        <ul>
+                            <li><strong>Idioma:</strong> português para domínio de negócio, inglês para termos técnicos.</li>
+                            <li><strong>Estilo:</strong> preferir <code>snake_case</code> para arquivos, colunas e variáveis; <code>kebab-case</code> para nomes de pastas em assets de front; <code>camelCase</code> apenas para classes e funções.</li>
+                            <li>Sem acentos, espaços ou caracteres especiais.</li>
+                            <li>Use nomes curtos, descritivos e versionáveis.</li>
+                        </ul>
+        
+                        <h3>Repositórios</h3>
+                        <ul>
+                            <li><code>mkz-overdraft-pipeline</code> (pipeline de dados)</li>
+                            <li><code>mkz-overdraft-service</code> (serviços/Apis)</li>
+                            <li><code>mkz-overdraft-analytics</code> (dashboards e notebooks)</li>
+                        </ul>
+        
+                        <h3>Branches (Git Flow simplificado)</h3>
+                        <ul>
+                            <li><code>main</code> (estável)</li>
+                            <li><code>develop</code> (integração)</li>
+                            <li><code>feat/&lt;resumo&gt;</code></li>
+                            <li><code>fix/&lt;resumo&gt;</code></li>
+                            <li><code>hotfix/&lt;resumo&gt;</code></li>
+                        </ul>
+        
+                        <h3>Commits (Conventional Commits)</h3>
+                        <ul>
+                            <li><code>feat: calcula juros diários</code></li>
+                            <li><code>fix: corrige parse de data</code></li>
+                            <li><code>chore: adiciona pre-commit</code></li>
+                            <li><code>docs: atualiza runbook</code></li>
+                        </ul>
+        
+                        <h3>Tags/Versões (SemVer)</h3>
+                        <ul>
+                            <li><code>vMAJOR.MINOR.PATCH</code> (ex.: <code>v1.2.0</code>)</li>
+                        </ul>
+        
+                        <h3>APIs</h3>
+                        <ul>
+                            <li><strong>Paths:</strong> <code>/v1/overdraft/contracts</code>, <code>/v1/overdraft/usages</code></li>
+                        </ul>
+        
+                        <h2>Estrutura de Código</h2>
+                        <p>Estrutura de diretórios para o projeto <code>mkz-overdraft-pipeline</code>:</p>
+        <pre><code>mkz-overdraft/
+        ├─ src/
+        │ ├─ __init__.py
+        │ ├─ config.py     # leitura de configs (YAML/env)
+        │ ├─ io.py           # I/O (CSV/Parquet)
+        │ ├─ transforms.py   # regras de negócio (juros, uso)
+        │ ├─ validators.py   # checagens (schema, nulos, tipos)
+        │ └─ pipeline.py     # orquestra a execução
+        ├─ tests/
+        │ ├─ testTransforms.py
+        │ ├─ testValidators.py
+        │ └─ assets/ (amostras CSV)
+        ├─ conf/
+        │ ├─ default.yaml    # caminhos, schemas, parâmetros
+        │ └─ logging.yaml
+        ├─ notebooks/
+        │ └─ exploracao.ipynb
+        ├─ data/{raw,staging,processed}/
+        ├─ requirements.txt
+        └─ README.md
+        </code></pre>
+                    </div>
+                </section>
+        
+                <section class="section" id="produto">
+                    <h2 class="section-title">🎯 Produto: Sistema de Cheque Especial</h2>
+                    <div class="content-page">
+                        <h2>Contexto do Produto</h2>
+                        <p><strong>O que o produto faz:</strong> Concede crédito automaticamente até o máximo contratado quando o cliente fica sem saldo na conta corrente.</p>
+                        <p><strong>Exemplo:</strong> Quando o cliente (do Banco Tangaratiba) faz pagamento ou transferência que excede o saldo em conta corrente, o sistema completa com o limite extra necessário dentro do limite máximo contratado (LTC).</p>
+                        <p><strong>Foco:</strong> Contratação, controle e transparência do uso do crédito.</p>
+                        <p><strong>Público alvo:</strong> Clientes correntistas do banco Tangaratiba.</p>
+        
+                        <h2>Etapas e Requisitos</h2>
+                        
+                        <h3>Requisitos Funcionais</h3>
+                        <ul>
+                            <li><strong>Ativação automática:</strong> Ativação do crédito respeitando o limite máximo; basta o saldo ser negativo para ativar (core do produto).</li>
+                            <li><strong>Cálculo e Cobrança:</strong> Cálculo e cobrança de juros e IOF diariamente (regra de negócio crítica).</li>
+                            <li><strong>Ajuste de Limite:</strong> Ajuste do limite contratado de acordo com disponibilidade (usabilidade e necessidade).</li>
+                            <li><strong>Consulta:</strong> Consulta do limite contratado sem uso (disponível) (usabilidade e transparência).</li>
+                            <li><strong>Registro e Notificação:</strong> Registro da transação de crédito e notificação (usabilidade e transparência).</li>
+                            <li><strong>Liquidação:</strong> Liquidação automática quando houver novo saldo na conta (regra de negócio).</li>
+                        </ul>
+        
+                        <h3>Requisitos Não Funcionais</h3>
+                        <ul>
+                            <li><strong>Segurança:</strong> Normas do Bacen e criptografia (risco regulatório alto e de imagem).</li>
+                            <li><strong>Latência:</strong> 200 ms (performance).</li>
+                            <li><strong>Disponibilidade:</strong> 99,0% (operações e imagem/confiança do cliente).</li>
+                            <li><strong>Escalabilidade:</strong> Aumento de 50% nas transações nos períodos de pico (datas de recebimento de salário, ou final de mês) (arquitetura).</li>
+                        </ul>
+        
+                        <h3>Análise de Riscos e Dependências</h3>
+                        <ul>
+                            <li><strong>Falha de segurança:</strong> Fraude ou falha de criptografia/autenticação. (Dependência: SecOps - equipe de segurança).</li>
+                            <li><strong>Regulatório/Legal:</strong> Mudança em taxas de juros ou regras do Bacen. (Dependência: API do banco central e área jurídica).</li>
+                            <li><strong>Operacional:</strong> Falha no banco de dados. (Dependência: Sistemas de banco de dados e observability).</li>
+                            <li><strong>Técnico:</strong> Falha na integração com outros módulos (ex: extrato). (Dependência: Módulo/API de extrato).</li>
+                        </ul>
+                    </div>
+                </section>
+        
+                <section class="section" id="documentacao">
+                    <h2 class="section-title">📚 Documentação</h2>
+                    <div class="content-page">
+                        <p>A documentação oficial do projeto será hospedada no GitHub Pages, permitindo que os membros da equipe acessem facilmente os templates, guias e decisões técnicas atualizadas, seguindo o padrão de documentação viva do time.</p>
+                        <p>Toda a documentação do time — incluindo PRDs, ADRs, Runbooks, Dicionários de Dados e Style Guides — será mantida no repositório GitHub do projeto e publicada via GitHub Pages, garantindo acesso rápido, versionamento automático e padronização visual.</p>
+                        
+                        <h3>Benefícios da Abordagem</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Benefício</th>
+                                    <th>Explicação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Centralização</strong></td>
+                                    <td>Toda a equipe acessa o mesmo local (documentação viva).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Versionamento automático</strong></td>
+                                    <td>Cada atualização de documentação é versionada junto com o código.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Integração DevOps</strong></td>
+                                    <td>Pode ser atualizado automaticamente no CI/CD ao aprovar PRs.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Transparência</strong></td>
+                                    <td>Facilita auditoria e compartilhamento (ex: professores, times de auditoria).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Formatação padrão</strong></td>
+                                    <td>Suporta Markdown (.md), o mesmo formato usado nos templates.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+        
+                <section class="section" id="governanca">
+                    <h2 class="section-title">⚖️ Governança</h2>
+                    <div class="content-page">
+                        <p>Conteúdo sobre governança, responsabilidades e processos de aprovação será adicionado aqui.</p>
+                    </div>
+                </section>
+        
+                <section class="section" id="templates">
+                    <h2 class="section-title">📝 Templates</h2>
+                    <div class="content-page">
+                        <p>Links para templates de ADRs, Runbooks e PRDs serão adicionados aqui.</p>
+                    </div>
+                </section>
+                
+                <section class="section" id="contribuindo">
+                    <h2 class="section-title">Contribuindo</h2>
+                    <p>Esta documentação é viva e evolui com o projeto. Todas as alterações devem:</p>
+                    <ul style="margin-left: 2rem; margin-top: 1rem; color: var(--text-light);">
+                        <li>Seguir os padrões estabelecidos</li>
+                        <li>Passar por revisão de PR</li>
+                        <li>Ser aprovadas pelo time técnico</li>
+                    </ul>
+                </section>
+
+                <footer>
+                    <p>&copy; 2025 Overdraft Project. Documentação mantida pelo time técnico.</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Última atualização: Novembro 2025</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+
+            // Função para fechar o menu
+            function closeMenu() {
+                sidebar.classList.remove('is-open');
+                overlay.classList.remove('is-open');
+            }
+
+            // Abrir/Fechar menu no mobile
+            menuToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('is-open');
+                overlay.classList.toggle('is-open');
+            });
+
+            // Fechar menu ao clicar no overlay
+            overlay.addEventListener('click', closeMenu);
+
+            // Fechar menu ao clicar em um link (para navegar para a âncora)
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Rola suavemente
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 80; // Espaço para header fixo
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                        window.scrollTo({
+                             top: offsetPosition,
+                             behavior: "smooth"
+                        });
+                    }
+
+                    closeMenu();
+                });
+            });
+
+            // Highlight do link ativo enquanto rola a página
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                // O 150 é um offset para "sentir" a seção um pouco antes
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 150) { 
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                // Se o scroll estiver no topo, ativa o "Início"
+                if (window.scrollY < 300) {
+                    current = 'home';
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href').substring(1); // Remove o '#'
+                    
+                    if (linkHref === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
