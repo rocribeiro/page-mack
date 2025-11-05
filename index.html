@@ -163,8 +163,6 @@
 
         .section {
             margin: 2rem 0 4rem 0;
-            /* O padding-top é essencial para o scroll-behavior não
-               colar o título no topo da página */
             padding-top: 4rem; 
         }
 
@@ -189,7 +187,7 @@
             border-radius: 12px;
             padding: 2rem 3rem;
             box-shadow: var(--shadow);
-            margin-top: 1rem; /* Ajustado */
+            margin-top: 1rem;
         }
 
         .content-page h2 {
@@ -204,6 +202,14 @@
             margin-top: 2rem;
             margin-bottom: 1rem;
             font-size: 1.4rem;
+        }
+        
+        .content-page h4 {
+            color: var(--text-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .content-page p,
@@ -222,7 +228,6 @@
             margin-bottom: 0.5rem;
         }
         
-        /* Ajuste para listas dentro da .content-page */
         .content-page ul li {
             margin-bottom: 0.75rem;
         }
@@ -260,7 +265,7 @@
             padding: 1.5rem;
             border-radius: 8px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 1rem 0 0 0;
         }
 
         .content-page pre code {
@@ -269,6 +274,87 @@
             padding: 0;
             font-size: 0.9rem;
         }
+        
+        .feedback-link {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        .feedback-link:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* * ==================================
+         * NOVOS ESTILOS PARA <DETAILS>
+         * ==================================
+        */
+        
+        /* A "caixa" do acordeão */
+        .content-page details {
+            margin: 1.5rem 0;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        
+        /* O "botão" clicável */
+        .content-page summary {
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--bg-light);
+            border-radius: 8px 8px 0 0;
+            transition: background 0.2s;
+        }
+        
+        .content-page summary:hover {
+            background: #eef2ff; /* Um azul bem claro */
+        }
+        
+        /* Estilo da seta (pode variar por navegador) */
+        .content-page summary::marker {
+            color: var(--primary);
+        }
+        
+        /* Estilo quando o <details> está aberto */
+        .content-page details[open] > summary {
+            background: #eef2ff;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        /* O contêiner do conteúdo (código ou tabela) */
+        .content-page details > div {
+            padding: 1.5rem;
+        }
+        
+        /* Ajuste para o <pre> não ter margem interna */
+        .content-page details pre {
+            margin: 0;
+            border-radius: 8px;
+        }
+        
+        /* Estilo da Tabela de Amostra de CSV */
+        .data-sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .data-sample-table th, .data-sample-table td {
+            border: 1px solid var(--border);
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+        }
+        .data-sample-table th {
+            background-color: var(--bg-light);
+        }
+
 
         /* Footer */
         footer {
@@ -287,28 +373,32 @@
         /* 7. LAYOUT RESPONSIVO (MOBILE) */
         @media (max-width: 900px) {
             .sidebar {
-                transform: translateX(-100%); /* Esconde a sidebar fora da tela */
+                transform: translateX(-100%);
                 box-shadow: 0 0 20px rgba(0,0,0,0.2);
             }
             .sidebar.is-open {
-                transform: translateX(0); /* Mostra a sidebar */
+                transform: translateX(0);
             }
 
             .main-content {
-                margin-left: 0; /* Conteúdo ocupa 100% */
+                margin-left: 0;
                 width: 100%;
             }
 
             .mobile-header {
-                display: flex; /* Mostra o header mobile */
+                display: flex;
             }
 
             .overlay.is-open {
-                display: block; /* Mostra o overlay escuro */
+                display: block;
             }
             
             .content-page {
-                padding: 1.5rem;
+                padding: 1rem;
+            }
+            
+            .content-page details > div {
+                padding: 1rem;
             }
         }
 
@@ -331,20 +421,20 @@
             <nav class="sidebar-nav">
                 <h3>Menu</h3>
                 <ul>
-                    <li><a href="#home" class="nav-link active">Início</a></li>
+                    <li><a href="#documentacao" class="nav-link active">Documentação</a></li>
                 </ul>
                 
                 <h3>Documentação</h3>
                 <ul>
+                    <li><a href="#home" class="nav-link ">Sobre o Projeto</a></li>
                     <li><a href="#produto" class="nav-link">Produto</a></li>
                     <li><a href="#padronizacao" class="nav-link">Padronização</a></li>
-                    <li><a href="#documentacao" class="nav-link">Documentação</a></li>
+                    <li><a href="#pipeline" class="nav-link">Pipeline de Dados</a></li>
                 </ul>
 
                 <h3>Outros</h3>
                 <ul>
-                    <li><a href="#governanca" class="nav-link">Governança</a></li>
-                    <li><a href="#templates" class="nav-link">Templates</a></li>
+                    <li><a href="#governanca" class="nav-link">Governança e Processos</a></li>
                     <li><a href="#contribuindo" class="nav-link">Contribuindo</a></li>
                 </ul>
             </nav>
@@ -353,7 +443,47 @@
         <main class="main-content">
             
             <div class="container">
-                
+
+                        
+                <section class="section" id="documentacao">
+                    <h2 class="section-title">📚 Sobre a Documentação</h2>
+                    <div class="content-page">
+                        <p>A documentação oficial do projeto será hospedada no GitHub Pages, permitindo que os membros da equipe acessem facilmente os templates, guias e decisões técnicas atualizadas, seguindo o padrão de documentação viva do time.</p>
+                        <p>Toda a documentação do time — incluindo PRDs, ADRs, Runbooks, Dicionários de Dados e Style Guides — será mantida no repositório GitHub do projeto e publicada via GitHub Pages, garantindo acesso rápido, versionamento automático e padronização visual.</p>
+                        
+                        <h3>Benefícios da Abordagem</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Benefício</th>
+                                    <th>Explicação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Centralização</strong></td>
+                                    <td>Toda a equipe acessa o mesmo local (documentação viva).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Versionamento automático</strong></td>
+                                    <td>Cada atualização de documentação é versionada junto com o código.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Integração DevOps</strong></td>
+                                    <td>Pode ser atualizado automaticamente no CI/CD ao aprovar PRs.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Transparência</strong></td>
+                                    <td>Facilitaria auditoria e compartilhamento (ex: professores, times de auditoria).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Formatação padrão</strong></td>
+                                    <td>Suporta Markdown (.md), o mesmo formato usado nos templates.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
                 <section class="section" id="home"> 
                     <h2 class="section-title">Sobre o Projeto: Overdraft 📊</h2>
                     <p class="section-subtitle">Bem-vindo(a) à documentação do nosso projeto de Cheque Especial!</p>
@@ -365,11 +495,13 @@
                         <ul>
                             <li>Nossos <strong>padrões de código</strong> e convenções (Git, APIs, etc.).</li>
                             <li>O <strong>contexto de produto</strong> detalhado e os requisitos.</li>
-                            <li>A <strong>estratégia de documentação</strong> que estamos usando (e por quê).</li>
+                            <li>Nosso <strong>pipeline de dados</strong> de análise de crédito.</li>
+                            <li>Os <strong>processos e runbooks</strong> para manter a qualidade.</li>
                         </ul>
                         <p>Use o menu ao lado para navegar pelas seções e explorar o projeto.</p>
                     </div>
                 </section>
+        
                 <section class="section" id="produto">
                     <h2 class="section-title">🎯 Produto: Sistema de Cheque Especial</h2>
                     <div class="content-page">
@@ -406,8 +538,27 @@
                             <li><strong>Operacional:</strong> Falha no banco de dados. (Dependência: Sistemas de banco de dados e observability).</li>
                             <li><strong>Técnico:</strong> Falha na integração com outros módulos (ex: extrato). (Dependência: Módulo/API de extrato).</li>
                         </ul>
+
+                        <h2>🚀 Evolução do Produto e Feedback</h2>
+                        
+                        <h3>Evolução Futura</h3>
+                        <p>O produto poderá evoluir para incluir:</p>
+                        <ul>
+                            <li>Relatório online de contratação e produção.</li>
+                            <li>Integração do produto com Carteira digital (Google Wallets).</li>
+                            <li>Integração do produto aos painéis de crédito e Raio-X do cliente.</li>
+                        </ul>
+
+                        <h3>Coleta de Feedback</h3>
+                        <p>Deixe seu feedback e ideias de melhoria a partir do link abaixo:</p>
+                        <a href="#" class="feedback-link">Banco MKZ – Preencher o formulário</a>
+
                     </div>
                 </section>
+
+                
+
+                
                 <section class="section" id="padronizacao">
                     <h2 class="section-title">📋 Padronização</h2>
                     <div class="content-page">
@@ -457,86 +608,623 @@
         
                         <h2>Estrutura de Código</h2>
                         <p>Estrutura de diretórios para o projeto <code>mkz-overdraft-pipeline</code>:</p>
-        <pre><code>mkz-overdraft/
-        ├─ src/
-        │ ├─ __init__.py
-        │ ├─ config.py     # leitura de configs (YAML/env)
-        │ ├─ io.py           # I/O (CSV/Parquet)
-        │ ├─ transforms.py   # regras de negócio (juros, uso)
-        │ ├─ validators.py   # checagens (schema, nulos, tipos)
-        │ └─ pipeline.py     # orquestra a execução
-        ├─ tests/
-        │ ├─ testTransforms.py
-        │ ├─ testValidators.py
-        │ └─ assets/ (amostras CSV)
-        ├─ conf/
-        │ ├─ default.yaml    # caminhos, schemas, parâmetros
-        │ └─ logging.yaml
-        ├─ notebooks/
-        │ └─ exploracao.ipynb
-        ├─ data/{raw,staging,processed}/
-        ├─ requirements.txt
-        └─ README.md
-        </code></pre>
+<pre><code>mkz-overdraft/
+├── data/
+│   └── raw/
+│       └── dados_credito_clientes_2024.csv
+│
+└── notebooks/
+    ├── Nb_Exploratoria.ipynb
+    ├── Nb_RelatorioVendas.ipynb
+    └── Nb_RelatorioVendas_ShiftLeft.ipynb
+</code></pre>
                     </div>
-                </section>        
-                <section class="section" id="documentacao">
-                    <h2 class="section-title">📚 Documentação</h2>
+                </section>
+
+                <section class="section" id="pipeline">
+                    <h2 class="section-title">🧭 Pipeline: Análise de Crédito</h2>
                     <div class="content-page">
-                        <p>A documentação oficial do projeto será hospedada no GitHub Pages, permitindo que os membros da equipe acessem facilmente os templates, guias e decisões técnicas atualizadas, seguindo o padrão de documentação viva do time.</p>
-                        <p>Toda a documentação do time — incluindo PRDs, ADRs, Runbooks, Dicionários de Dados e Style Guides — será mantida no repositório GitHub do projeto e publicada via GitHub Pages, garantindo acesso rápido, versionamento automático e padronização visual.</p>
+                        <h2>Visão Geral: Fluxo ETL (Extract → Transform → Load)</h2>
+                        <p>O objetivo deste pipeline é tratar, consolidar e gerar análises dos dados de crédito contratados pelos clientes.</p>
+
+                        <h3>1. Entrada (Extract)</h3>
+                        <h4>Fontes de dados:</h4>
+                        <ul>
+                            <li><code>dados_credito_clientes_2024.csv</code></li>
+                        </ul>
                         
-                        <h3>Benefícios da Abordagem</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Benefício</th>
-                                    <th>Explicação</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Centralização</strong></td>
-                                    <td>Toda a equipe acessa o mesmo local (documentação viva).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Versionamento automático</strong></td>
-                                    <td>Cada atualização de documentação é versionada junto com o código.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Integração DevOps</strong></td>
-                                    <td>Pode ser atualizado automaticamente no CI/CD ao aprovar PRs.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Transparência</strong></td>
-                                    <td>Facilitaria auditoria e compartilhamento (ex: professores, times de auditoria).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Formatação padrão</strong></td>
-                                    <td>Suporta Markdown (.md), o mesmo formato usado nos templates.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <details>
+                            <summary>Ver Amostra de Dados (dados_credito_clientes_2024.csv)</summary>
+                            <div>
+<table border="1" class="dataframe data-sample-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Identificacao_Cliente</th>
+      <th>Valor_Contratado</th>
+      <th>Taxa_Praticada</th>
+      <th>Valor_Total_Disponibilizado</th>
+      <th>Data_Contratacao</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CLI-0103</td>
+      <td>40370.65</td>
+      <td>0.1267</td>
+      <td>77273.93</td>
+      <td>20241013</td>
+    </tr>
+    <tr>
+      <td>CLI-0436</td>
+      <td>46532.17</td>
+      <td>0.0249</td>
+      <td>59666.58</td>
+      <td>20241012</td>
+    </tr>
+    <tr>
+      <td>CLI-0349</td>
+      <td>20850.03</td>
+      <td>0.0677</td>
+      <td>51171.12</td>
+      <td>20241204</td>
+    </tr>
+    <tr>
+      <td>CLI-0271</td>
+      <td>45399.44</td>
+      <td>0.0905</td>
+      <td>101511.81</td>
+      <td>20241227</td>
+    </tr>
+    <tr>
+      <td>CLI-0107</td>
+      <td>16753.29</td>
+      <td>0.0393</td>
+      <td>21002.15</td>
+      <td>20240731</td>
+    </tr>
+  </tbody>
+</table>
+                            </div>
+                        </details>
+                        <h4>Contém:</h4>
+                        <ul>
+                            <li>Identificação do cliente</li>
+                            <li>Valor contratado</li>
+                            <li>Taxa praticada</li>
+                            <li>Valor total disponibilizado</li>
+                            <li>Data de contratação</li>
+                        </ul>
+                        <h4>Etapas:</h4>
+                        <ul>
+                            <li>Importar CSV com <code>pandas.read_csv()</code>.</li>
+                            <li>Validar tipos de dados (numéricos, datas).</li>
+                            <li>Garantir encoding UTF-8.</li>
+                        </ul>
+
+                        <h3>2. Limpeza e Preparação (Transform - Etapa 1)</h3>
+                        <p><strong>Objetivo:</strong> Preparar os dados para análise confiável.</p>
+                        <h4>Transformações:</h4>
+                        <ul>
+                            <li>Converter a coluna <code>Data_Contratacao</code> → formato datetime (<code>%Y%m%d</code>).</li>
+                            <li>Remover ou tratar linhas com valores nulos.</li>
+                            <li>Garantir que <code>Valor_Contratado</code>, <code>Valor_Total_Disponibilizado</code> e <code>Taxa_Praticada</code> sejam numéricos.</li>
+                        </ul>
+                        <h4>Criação de campo derivado:</h4>
+                        <ul>
+                            <li><code>Indice_Utilizacao = Valor_Contratado / Valor_Total_Disponibilizado</code></li>
+                        </ul>
+                        <h4>Validação de intervalos:</h4>
+                        <ul>
+                            <li>0 &lt; <code>Taxa_Praticada</code> &lt; 1</li>
+                            <li><code>Valor_Contratado</code> ≤ <code>Valor_Total_Disponibilizado</code></li>
+                        </ul>
+
+                        <h3>3. Transformação Analítica (Transform - Etapa 2)</h3>
+                        <p><strong>Objetivo:</strong> Gerar informações consolidadas para visualização.</p>
+                        <h4>Agregações e Cálculos:</h4>
+                        <ul>
+                            <li><strong>Por Mês:</strong>
+                                <ul>
+                                    <li>Valor médio contratado</li>
+                                    <li>Valor médio disponibilizado</li>
+                                    <li>Índice médio de utilização</li>
+                                </ul>
+                            </li>
+                            <li><strong>Geral:</strong>
+                                <ul>
+                                    <li>Valor máximo / mínimo / médio contratado</li>
+                                    <li>Taxa média praticada</li>
+                                    <li>Valor médio disponibilizado</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4>Ferramentas:</h4>
+                        <ul>
+                            <li><code>pandas.groupby()</code>, <code>mean()</code>, <code>max()</code>, <code>min()</code></li>
+                        </ul>
+
+                        <h3>4. Saída (Load)</h3>
+                        <h4>Destinos possíveis:</h4>
+                        <ul>
+                            <li>Tabelas agregadas (<code>.csv</code> ou <code>.parquet</code>)</li>
+                            <li>Relatórios automatizados (<code>.xlsx</code> / dashboards Power BI ou Tableau)</li>
+                            <li>Visualizações (gráficos com <code>matplotlib</code> / <code>seaborn</code>)</li>
+                        </ul>
+                        
+                        <h2>Códigos-Fonte dos Notebooks</h2>
+
+                        <details>
+                            <summary>Notebook: Pipeline Principal (Nb_RelatorioVendas.ipynb)</summary>
+                            <pre><code># --- Célula de Código 1 ---
+import pandas as pd
+
+# ===============================
+# ETAPA 1 — EXTRAÇÃO (EXTRACT)
+# ===============================
+
+# Leitura dos dados de crédito simulados
+df = pd.read_csv(&amp;quot;dados_credito_clientes_2024.csv&amp;quot;)
+
+# ===============================
+# ETAPA 2 — LIMPEZA E TRANSFORMAÇÃO (TRANSFORM)
+# ===============================
+
+# Conversão de data (YYYYMMDD → datetime)
+df[&amp;quot;Data_Contratacao&amp;quot;] = pd.to_datetime(df[&amp;quot;Data_Contratacao&amp;quot;], format=&amp;quot;%Y%m%d&amp;quot;, errors=&amp;quot;coerce&amp;quot;)
+
+# Remover linhas com datas inválidas ou valores nulos críticos
+df = df.dropna(subset=[&amp;quot;Data_Contratacao&amp;quot;, &amp;quot;Valor_Contratado&amp;quot;, &amp;quot;Valor_Total_Disponibilizado&amp;quot;, &amp;quot;Taxa_Praticada&amp;quot;])
+
+# Garantir tipos numéricos corretos
+df[&amp;quot;Valor_Contratado&amp;quot;] = pd.to_numeric(df[&amp;quot;Valor_Contratado&amp;quot;], errors=&amp;quot;coerce&amp;quot;)
+df[&amp;quot;Valor_Total_Disponibilizado&amp;quot;] = pd.to_numeric(df[&amp;quot;Valor_Total_Disponibilizado&amp;quot;], errors=&amp;quot;coerce&amp;quot;)
+df[&amp;quot;Taxa_Praticada&amp;quot;] = pd.to_numeric(df[&amp;quot;Taxa_Praticada&amp;quot;], errors=&amp;quot;coerce&amp;quot;)
+
+# Criar coluna derivada: índice de utilização
+df[&amp;quot;Indice_Utilizacao&amp;quot;] = df[&amp;quot;Valor_Contratado&amp;quot;] / df[&amp;quot;Valor_Total_Disponibilizado&amp;quot;]
+
+# Criar coluna de mês (para agregações)
+df[&amp;quot;Mes&amp;quot;] = df[&amp;quot;Data_Contratacao&amp;quot;].dt.month
+
+# ===============================
+# ETAPA 3 — ANÁLISE DESCRITIVA (TRANSFORM)
+# ===============================
+
+# Estatísticas básicas gerais
+estatisticas_gerais = {
+    &amp;quot;Valor_Maximo_Contratado&amp;quot;: df[&amp;quot;Valor_Contratado&amp;quot;].max(),
+    &amp;quot;Valor_Minimo_Contratado&amp;quot;: df[&amp;quot;Valor_Contratado&amp;quot;].min(),
+    &amp;quot;Valor_Medio_Contratado&amp;quot;: df[&amp;quot;Valor_Contratado&amp;quot;].mean(),
+    &amp;quot;Taxa_Media_Praticada&amp;quot;: df[&amp;quot;Taxa_Praticada&amp;quot;].mean(),
+    &amp;quot;Valor_Medio_Disponibilizado&amp;quot;: df[&amp;quot;Valor_Total_Disponibilizado&amp;quot;].mean(),
+    &amp;quot;Indice_Medio_Utilizacao&amp;quot;: df[&amp;quot;Indice_Utilizacao&amp;quot;].mean()
+}
+
+# Exibição no console
+print(&amp;quot;===== Estatísticas Gerais =====&amp;quot;)
+for k, v in estatisticas_gerais.items():
+    print(f&amp;quot;{k}: {v:.4f}&amp;quot;)
+
+# Estatísticas mensais (agregadas)
+relatorio_mensal = (
+    df.groupby(&amp;quot;Mes&amp;quot;)[[&amp;quot;Valor_Contratado&amp;quot;, &amp;quot;Valor_Total_Disponibilizado&amp;quot;, &amp;quot;Indice_Utilizacao&amp;quot;]]
+    .agg([&amp;quot;mean&amp;quot;, &amp;quot;max&amp;quot;, &amp;quot;min&amp;quot;])
+    .reset_index()
+)
+
+# ===============================
+# ETAPA 4 — CARREGAMENTO / SAÍDA (LOAD)
+# ===============================
+
+# Exportar o relatório consolidado
+relatorio_mensal.to_csv(&amp;quot;relatorio_vendas.csv&amp;quot;, index=False, encoding=&amp;quot;utf-8&amp;quot;)
+
+print(&amp;quot;\nArquivo &amp;#x27;relatorio_vendas.csv&amp;#x27; gerado com sucesso!&amp;quot;)
+
+
+# --- Célula de Código 2 ---
+</code></pre>
+                        </details>
+
+                        <details>
+                            <summary>Notebook: Pipeline com Testes (Nb_RelatorioVendas_ShiftLeft.ipynb)</summary>
+                            <pre><code># --- Célula de Código 1 ---
+import pandas as pd
+import numpy as np
+
+# ===============================
+# ETAPA 1 — SIMULAÇÃO DE DADOS COM ERROS
+# ===============================
+
+dados_errados = {
+    &amp;quot;Identificacao_Cliente&amp;quot;: [&amp;quot;CLI-001&amp;quot;, &amp;quot;CLI-002&amp;quot;, None, &amp;quot;CLI-004&amp;quot;, &amp;quot;CLI-005&amp;quot;],
+    &amp;quot;Valor_Contratado&amp;quot;: [20000, np.nan, &amp;quot;erro&amp;quot;, 35000, 15000],
+    &amp;quot;Taxa_Praticada&amp;quot;: [0.05, 0.07, 0.08, &amp;quot;texto&amp;quot;, 0.06],
+    &amp;quot;Valor_Total_Disponibilizado&amp;quot;: [40000, 50000, 45000, np.nan, 20000],
+    &amp;quot;Data_Contratacao&amp;quot;: [&amp;quot;20240115&amp;quot;, &amp;quot;20240230&amp;quot;, &amp;quot;dataerrada&amp;quot;, &amp;quot;20240310&amp;quot;, None]
+}
+
+df = pd.DataFrame(dados_errados)
+print(&amp;quot;=== Dados originais (com erros simulados) ===&amp;quot;)
+print(df)
+
+# ===============================
+# ETAPA 2 — LIMPEZA E VALIDAÇÃO
+# ===============================
+
+# Conversão de colunas numéricas (forçando erro → NaN)
+for col in [&amp;quot;Valor_Contratado&amp;quot;, &amp;quot;Taxa_Praticada&amp;quot;, &amp;quot;Valor_Total_Disponibilizado&amp;quot;]:
+    df[col] = pd.to_numeric(df[col], errors=&amp;quot;coerce&amp;quot;)
+
+# Conversão de data (forçando erro → NaT)
+df[&amp;quot;Data_Contratacao&amp;quot;] = pd.to_datetime(df[&amp;quot;Data_Contratacao&amp;quot;], format=&amp;quot;%Y%m%d&amp;quot;, errors=&amp;quot;coerce&amp;quot;)
+
+# Remover linhas com erros críticos
+df_limpo = df.dropna(subset=[&amp;quot;Valor_Contratado&amp;quot;, &amp;quot;Valor_Total_Disponibilizado&amp;quot;, &amp;quot;Taxa_Praticada&amp;quot;, &amp;quot;Data_Contratacao&amp;quot;])
+
+# Criar coluna derivada
+df_limpo[&amp;quot;Indice_Utilizacao&amp;quot;] = df_limpo[&amp;quot;Valor_Contratado&amp;quot;] / df_limpo[&amp;quot;Valor_Total_Disponibilizado&amp;quot;]
+
+# Mostrar dados limpos
+print(&amp;quot;\n=== Dados após limpeza ===&amp;quot;)
+print(df_limpo)
+
+# ===============================
+# ETAPA 3 — RELATÓRIO DE VALIDAÇÃO
+# ===============================
+
+print(&amp;quot;\n=== Relatório de Qualidade ===&amp;quot;)
+print(f&amp;quot;Linhas originais: {len(df)}&amp;quot;)
+print(f&amp;quot;Linhas válidas após limpeza: {len(df_limpo)}&amp;quot;)
+print(f&amp;quot;Linhas removidas: {len(df) - len(df_limpo)}&amp;quot;)
+
+# Log de problemas detectados
+problemas = df[df.isna().any(axis=1)]
+if not problemas.empty:
+    print(&amp;quot;\nLinhas com problemas detectados:&amp;quot;)
+    print(problemas)
+else:
+    print(&amp;quot;Nenhum problema detectado.&amp;quot;)
+
+
+# --- Célula de Código 2 ---
+</code></pre>
+                        </details>
+                        
+                        <details>
+                            <summary>Notebook: Análise Exploratória (Nb_Exploratoria.ipynb)</summary>
+                            <pre><code># --- Célula de Código 1 ---
+import pandas as pd
+
+# Carregar os dados
+df = pd.read_csv(&amp;quot;dados_credito_clientes_2024.csv&amp;quot;)
+
+# Calcular estatísticas
+valor_maximo = df[&amp;quot;Valor_Contratado&amp;quot;].max()
+valor_minimo = df[&amp;quot;Valor_Contratado&amp;quot;].min()
+valor_medio = df[&amp;quot;Valor_Contratado&amp;quot;].mean()
+taxa_media = df[&amp;quot;Taxa_Praticada&amp;quot;].mean()
+valor_disponibilizado_medio = df[&amp;quot;Valor_Total_Disponibilizado&amp;quot;].mean()
+
+# Exibir os resultados
+print(&amp;quot;===== Estatísticas Gerais =====&amp;quot;)
+print(f&amp;quot;Valor Máximo Contratado: R$ {valor_maximo:,.2f}&amp;quot;)
+print(f&amp;quot;Valor Mínimo Contratado: R$ {valor_minimo:,.2f}&amp;quot;)
+print(f&amp;quot;Valor Médio Contratado: R$ {valor_medio:,.2f}&amp;quot;)
+print(f&amp;quot;Taxa Média Praticada: {taxa_media * 100:.2f}%&amp;quot;)
+print(f&amp;quot;Valor Médio Disponibilizado: R$ {valor_disponibilizado_medio:,.2f}&amp;quot;)
+
+
+# --- Célula de Código 2 ---
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Carregar os dados
+df = pd.read_csv(&amp;quot;dados_credito_clientes_2024.csv&amp;quot;)
+
+# Converter a data (YYYYMMDD) para datetime
+df[&amp;quot;Data_Contratacao&amp;quot;] = pd.to_datetime(df[&amp;quot;Data_Contratacao&amp;quot;], format=&amp;quot;%Y%m%d&amp;quot;)
+
+# Extrair o mês
+df[&amp;quot;Mes&amp;quot;] = df[&amp;quot;Data_Contratacao&amp;quot;].dt.month
+
+# Calcular o valor médio contratado por mês
+media_mensal = df.groupby(&amp;quot;Mes&amp;quot;)[&amp;quot;Valor_Contratado&amp;quot;].mean().reset_index()
+
+# Plotar a distribuição
+plt.figure(figsize=(10, 6))
+plt.bar(media_mensal[&amp;quot;Mes&amp;quot;], media_mensal[&amp;quot;Valor_Contratado&amp;quot;])
+plt.title(&amp;quot;Valor Médio Contratado por Mês (2024)&amp;quot;, fontsize=14)
+plt.xlabel(&amp;quot;Mês&amp;quot;)
+plt.ylabel(&amp;quot;Valor Médio Contratado (R$)&amp;quot;)
+plt.xticks(range(1, 13))
+plt.grid(axis=&amp;quot;y&amp;quot;, linestyle=&amp;quot;--&amp;quot;, alpha=0.7)
+plt.tight_layout()
+plt.show()
+
+# Exibir tabela de médias
+print(media_mensal)
+
+
+# --- Célula de Código 3 ---
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# === 1. Carregar os dados ===
+df = pd.read_csv(&amp;quot;dados_credito_clientes_2024.csv&amp;quot;)
+
+# Converter a data (YYYYMMDD) para datetime
+df[&amp;quot;Data_Contratacao&amp;quot;] = pd.to_datetime(df[&amp;quot;Data_Contratacao&amp;quot;], format=&amp;quot;%Y%m%d&amp;quot;)
+
+# Extrair o mês
+df[&amp;quot;Mes&amp;quot;] = df[&amp;quot;Data_Contratacao&amp;quot;].dt.month
+
+# Calcular índice de utilização
+df[&amp;quot;Indice_Utilizacao&amp;quot;] = df[&amp;quot;Valor_Contratado&amp;quot;] / df[&amp;quot;Valor_Total_Disponibilizado&amp;quot;]
+
+# === 2. Calcular médias mensais ===
+media_mensal = (
+    df.groupby(&amp;quot;Mes&amp;quot;)[[&amp;quot;Valor_Contratado&amp;quot;, &amp;quot;Valor_Total_Disponibilizado&amp;quot;, &amp;quot;Indice_Utilizacao&amp;quot;]]
+    .mean()
+    .reset_index()
+)
+
+# === 3. Gráficos ===
+
+plt.figure(figsize=(12, 8))
+
+# --- Gráfico 1: Valor contratado médio ---
+plt.subplot(3, 1, 1)
+plt.bar(media_mensal[&amp;quot;Mes&amp;quot;], media_mensal[&amp;quot;Valor_Contratado&amp;quot;], color=&amp;quot;skyblue&amp;quot;)
+plt.title(&amp;quot;Valor Médio Contratado por Mês (2024)&amp;quot;)
+plt.ylabel(&amp;quot;R$ (médio)&amp;quot;)
+plt.xticks(range(1, 13))
+plt.grid(axis=&amp;quot;y&amp;quot;, linestyle=&amp;quot;--&amp;quot;, alpha=0.7)
+
+# --- Gráfico 2: Valor disponibilizado médio ---
+plt.subplot(3, 1, 2)
+plt.bar(media_mensal[&amp;quot;Mes&amp;quot;], media_mensal[&amp;quot;Valor_Total_Disponibilizado&amp;quot;], color=&amp;quot;orange&amp;quot;)
+plt.title(&amp;quot;Valor Médio Disponibilizado por Mês (2024)&amp;quot;)
+plt.ylabel(&amp;quot;R$ (médio)&amp;quot;)
+plt.xticks(range(1, 13))
+plt.grid(axis=&amp;quot;y&amp;quot;, linestyle=&amp;quot;--&amp;quot;, alpha=0.7)
+
+# --- Gráfico 3: Índice de utilização ---
+plt.subplot(3, 1, 3)
+plt.bar(media_mensal[&amp;quot;Mes&amp;quot;], media_mensal[&amp;quot;Indice_Utilizacao&amp;quot;], color=&amp;quot;green&amp;quot;)
+plt.title(&amp;quot;Índice Médio de Utilização por Mês (2024)&amp;quot;)
+plt.xlabel(&amp;quot;Mês&amp;quot;)
+plt.ylabel(&amp;quot;Índice&amp;quot;)
+plt.xticks(range(1, 13))
+plt.grid(axis=&amp;quot;y&amp;quot;, linestyle=&amp;quot;--&amp;quot;, alpha=0.7)
+
+plt.tight_layout()
+plt.show()
+
+# === 4. Exibir tabela resumida ===
+print(&amp;quot;\n===== Médias Mensais =====&amp;quot;)
+print(media_mensal)
+
+
+# --- Célula de Código 4 ---
+</code></pre>
+                        </details>
+                        
                     </div>
                 </section>
         
                 <section class="section" id="governanca">
-                    <h2 class="section-title">⚖️ Governança</h2>
+                    <h2 class="section-title">⚖️ Governança e Processos</h2>
                     <div class="content-page">
-                        <p>Conteúdo sobre governança, responsabilidades e processos de aprovação será adicionado aqui.</p>
-                        <p>Esta seção definirá quem aprova o quê, como lidamos com mudanças nos requisitos e quais são os papéis de cada membro da equipe acadêmica.</p>
-                    </div>
-                </section>
-        
-                <section class="section" id="templates">
-                    <h2 class="section-title">📝 Templates</h2>
-                    <div class="content-page">
-                        <p>Links para templates de ADRs, Runbooks e PRDs serão adicionados aqui.</p>
-                        <p>Para manter a consistência, usaremos templates padronizados para:</p>
+                        
+                        <h2>⚙️ Runbook de Execução: Pipeline ETL de Dados de Crédito</h2>
+                        <p>Este documento é o manual operacional para executar o script do pipeline.</p>
+                        
+                        <h3>1. Resumo do Processo (ETL)</h3>
+                        <p>O pipeline executa as seguintes etapas:</p>
                         <ul>
-                            <li><strong>ADR (Architecture Decision Record):</strong> Para registrar decisões de arquitetura importantes.</li>
-                            <li><strong>PRD (Product Requirements Document):</strong> Para definir novas funcionalidades.</li>
-                            <li><strong>Runbook:</strong> Para documentar procedimentos operacionais.</li>
+                            <li>Leitura do arquivo <code>dados_credito_clientes_2024.csv</code>.</li>
+                            <li>Limpeza e conversão de tipos de dados.</li>
+                            <li>Criação de colunas derivadas, como <code>Indice_Utilizacao</code> e <code>Mes</code>.</li>
+                            <li>Análise descritiva (Máximos, mínimos, médias gerais e mensais).</li>
+                            <li>Geração de um relatório consolidado → <code>relatorio_vendas.csv</code>.</li>
+                        </ul>
+
+                        <h3>2. Checklist Rápido Antes da Execução</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Etapa</th>
+                                    <th>Verificação</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>🗂 Entrada</td>
+                                    <td>Arquivo CSV disponível e acessível</td>
+                                    <td>☐</td>
+                                </tr>
+                                <tr>
+                                    <td>🔢 Tipos de dados</td>
+                                    <td>Numéricos e datas corretas</td>
+                                    <td>☐</td>
+                                </tr>
+                                <tr>
+                                    <td>🧼 Limpeza</td>
+                                    <td>Linhas inválidas removidas</td>
+                                    <td>☐</td>
+                                </tr>
+                                <tr>
+                                    <td>📈 Métricas</td>
+                                    <td>Médias e totais coerentes</td>
+                                    <td>☐</td>
+                                </tr>
+                                <tr>
+                                    <td>💾 Saída</td>
+                                    <td><code>relatorio_vendas.csv</code> gerado</td>
+                                    <td>☐</td>
+                                </tr>
+                                <tr>
+                                    <td>📋 Log</td>
+                                    <td>Execução registrada</td>
+                                    <td>☐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>3. Como Rodar o Script</h3>
+                        <h4>Pré-requisitos:</h4>
+                        <ul>
+                            <li>Python 3.8+</li>
+                            <li>Bibliotecas instaladas: <code>pip install pandas numpy matplotlib</code></li>
+                            <li>Arquivo de entrada disponível: <code>dados_credito_clientes_2024.csv</code></li>
+                        </ul>
+                        <h4>Execução:</h4>
+                        <ol>
+                            <li>Salve o script ETL (ex: <code>etl_credito_clientes.py</code>).</li>
+                            <li>No terminal, execute: <pre><code>python etl_credito_clientes.py</code></pre></li>
+                            <li>Ao final, o console exibirá o status e a confirmação de geração do <code>relatorio_vendas.csv</code>.</li>
+                        </ol>
+
+                        <h3>4. Estrutura Esperada dos Arquivos</h3>
+                        <h4>Entrada: <code>dados_credito_clientes_2024.csv</code></h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Identificacao_Cliente</th>
+                                    <th>Valor_Contratado</th>
+                                    <th>Taxa_Praticada</th>
+                                    <th>Valor_Total_Disponibilizado</th>
+                                    <th>Data_Contratacao</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CLI-0001</td>
+                                    <td>12000.00</td>
+                                    <td>0.06</td>
+                                    <td>20000.00</td>
+                                    <td>20240115</td>
+                                </tr>
+                                <tr>
+                                    <td>CLI-0002</td>
+                                    <td>25000.00</td>
+                                    <td>0.07</td>
+                                    <td>35000.00</td>
+                                    <td>20240320</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>Saída: <code>relatorio_vendas.csv</code></h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Valor_Contratado_mean</th>
+                                    <th>Valor_Contratado_max</th>
+                                    <th>Valor_Contratado_min</th>
+                                    <th>Valor_Total_Disponibilizado_mean</th>
+                                    <th>Indice_Utilizacao_mean</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>18500.20</td>
+                                    <td>49000.45</td>
+                                    <td>3000.00</td>
+                                    <td>30500.33</td>
+                                    <td>0.61</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>19800.55</td>
+                                    <td>47000.11</td>
+                                    <td>2800.00</td>
+                                    <td>33000.21</td>
+                                    <td>0.63</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>5. Como Corrigir Erros Comuns</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Erro detectado</th>
+                                    <th>Causa provável</th>
+                                    <th>Como corrigir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>ParserError</strong> ao ler CSV</td>
+                                    <td>Arquivo corrompido ou delimitador incorreto</td>
+                                    <td>Verifique o separador (<code>,</code> ou <code>;</code>) e o encoding UTF-8</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ValueError</strong> em datas</td>
+                                    <td>Datas fora do formato YYYYMMDD</td>
+                                    <td>Corrigir formato no CSV antes da execução</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NaN</strong> em colunas críticas</td>
+                                    <td>Dados ausentes ou texto em campos numéricos</td>
+                                    <td>Usar <code>pd.to_numeric(errors="coerce")</code> e revisar fonte</td>
+                                </tr>
+                                <tr>
+                                    <td>Relatório com poucos registros</td>
+                                    <td>Muitas linhas removidas na limpeza</td>
+                                    <td>Verificar regras de <code>dropna()</code> e campos obrigatórios</td>
+                                </tr>
+                                <tr>
+                                    <td>Índice de utilização > 1</td>
+                                    <td>Valor contratado maior que disponibilizado</td>
+                                    <td>Corrigir na base ou ajustar regra de negócio</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h2>📋 Checklist de Verificação de Qualidade de Dados (QA)</h2>
+                        <p>Este checklist serve como guia operacional para a equipe validar a integridade do pipeline antes de cada execução.</p>
+                        
+                        <h3>ETAPA 1 — Validação da Entrada (Extract)</h3>
+                        <ul>
+                            <li>☑️ Arquivo CSV está acessível e legível?</li>
+                            <li>☑️ Codificação (UTF-8) correta?</li>
+                            <li>☑️ Cabeçalhos correspondem aos esperados (Identificacao_Cliente, Valor_Contratado, etc.)?</li>
+                            <li>☑️ Número de registros dentro do esperado (> 0)?</li>
+                        </ul>
+
+                        <h3>ETAPA 2 — Qualidade dos Dados (Transform - Limpeza)</h3>
+                        <ul>
+                            <li>☑️ Tipos de dados coerentes (float, datetime, etc.)?</li>
+                            <li>☑️ Datas convertidas corretamente (YYYYMMDD → datetime)?</li>
+                            <li>☑️ Nenhum valor NaN em colunas críticas (Valor_Contratado, Taxa_Praticada, Valor_Total_Disponibilizado)?</li>
+                            <li>☑️ Nenhum valor negativo ou zero indevido nos campos monetários?</li>
+                            <li>☑️ Índice de utilização dentro de faixa lógica (0 &lt; índice ≤ 1)?</li>
+                        </ul>
+
+                        <h3>ETAPA 3 — Análise Descritiva (Transform - Métricas)</h3>
+                        <ul>
+                            <li>☑️ Estatísticas básicas (média, máximo, mínimo) calculadas sem erro?</li>
+                            <li>☑️ Resultados numéricos coerentes (ex: média dentro do intervalo min–max)?</li>
+                        </ul>
+
+                        <h3>ETAPA 4 — Saída (Load)</h3>
+                        <ul>
+                            <li>☑️ Arquivo de saída (relatorio_vendas.csv) gerado com sucesso?</li>
+                            <li>☑️ Colunas e formato corretos?</li>
+                            <li>☑️ Tamanho e número de linhas condizentes com a entrada filtrada?</li>
+                        </ul>
+
+                        <h3>ETAPA 5 — Logs e Monitoramento</h3>
+                        <ul>
+                            <li>☑️ Erros e exceções registrados (log)?</li>
+                            <li>☑️ Linhas removidas documentadas?</li>
+                            <li>☑️ Data/hora da execução registrada para auditoria?</li>
                         </ul>
                     </div>
                 </section>
