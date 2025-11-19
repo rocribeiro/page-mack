@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ] # Executa automaticamente quando algo é enviado para main
   workflow_run:
-    workflows: ["ci-validacao"]   # nome exato do outro workflow
+    workflows: ["ci"]   # nome exato do outro workflow
     types: 
       - completed
 
