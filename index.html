@@ -164,7 +164,7 @@
         .section {
             margin: 2rem 0 4rem 0;
             padding-top: 4rem; 
-        } 
+        }
 
         .section-title {
             font-size: 2.5rem;
@@ -347,6 +347,10 @@
         .data-sample-table th {
             background-color: var(--bg-light);
         }
+        
+        .text-right {
+            text-align: right;
+        }
 
 
         /* Footer */
@@ -367,21 +371,21 @@
         @media (max-width: 900px) {
             .sidebar {
                 transform: translateX(-100%);
-                box-shadow: 0 0 20px rgba(0,0,0,0.2);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             }
             .sidebar.is-open {
                 transform: translateX(0);
             }
-
+ 
             .main-content {
                 margin-left: 0;
                 width: 100%;
             }
-
+ 
             .mobile-header {
                 display: flex;
             }
-
+ 
             .overlay.is-open {
                 display: block;
             }
@@ -404,13 +408,13 @@
         <button id="menu-toggle" type="button">☰</button>
     </header>
 
-    <div class="overlay" id="overlay"></div> 
+    <div class="overlay" id="overlay"></div>
 
     <div class="layout-wrapper">
         
         <aside class="sidebar" id="sidebar">
             <a href="#home" class="logo">📊 Overdraft Docs</a>
-            
+             
             <nav class="sidebar-nav">
                 <h3>Menu</h3>
                 <ul> 
@@ -433,11 +437,11 @@
             </nav>
         </aside>
 
-        <main class="main-content"> 
+        <main class="main-content">
             
             <div class="container">
 
-                <section class="section" id="documentacao"> 
+                <section class="section" id="documentacao">
                     <h2 class="section-title">📚 Sobre a Documentação</h2>
                     <div class="content-page">
                         
@@ -451,7 +455,7 @@
                         </ul>
                         <hr class="hr-divider">
                         <p class="section-subtitle">Bem-vindo(a) à documentação do nosso projeto de Cheque Especial!</p>
-                        <p>A documentação oficial do projeto será hospedada no GitHub Pages, permitindo que os membros da equipe acessem facilmente os templates, guias e decisões técnicas atualizadas, seguindo o padrão de documentação viva do time.</p>
+                        <p>A documentação oficial do projeto será hospedada no GitHub Pages, permitindo que os membros da equipe acessem facilmente os templates, guias e decisões técnicas atualizadas, seguindo o padrão de documentação viva do time.</p> 
                         <p>Toda a documentação do time — incluindo PRDs, ADRs, Runbooks, Dicionários de Dados e Style Guides — será mantida no repositório GitHub do projeto e publicada via GitHub Pages, garantindo acesso rápido, versionamento automático e padronização visual.</p> 
                         
                         <h3>Benefícios da Abordagem</h3>
@@ -489,9 +493,9 @@
                 </section>
                  
                 <section class="section" id="home">
-                    <h2 class="section-title">Projeto: Overdraft 📊</h2> 
+                    <h2 class="section-title">Projeto: Overdraft 📊</h2>
                  
-                    <div class="content-page"> 
+                    <div class="content-page">
                         <p>Este site centraliza toda a documentação técnica e de produto para o nosso <strong>trabalho acadêmico</strong>. O projeto <strong>Overdraft</strong> é um sistema focado em conceder crédito automático (cheque especial) para clientes do "Banco MKZ" quando o saldo em conta é insuficiente.</p>
                         <p>Mais do que apenas um sistema de crédito, nosso foco é garantir <strong>total transparência e controle</strong> para o cliente, com regras claras de contratação, uso e liquidação.</p>
                         <p>Aqui você encontrará tudo o que precisa:</p>
@@ -505,7 +509,7 @@
                     </div>
                 </section>
         
-                <section class="section" id="produto"> 
+                <section class="section" id="produto">
                     <h2 class="section-title">🎯 Produto: Sistema de Cheque Especial</h2>
                     <div class="content-page">
                         <h2>Contexto do Produto</h2>
@@ -514,7 +518,7 @@
                         <p><strong>Foco:</strong> Contratação, controle e transparência do uso do crédito.</p>
                         <p><strong>Público alvo:</strong> Clientes correntistas do Banco MKZ.</p>
         
-                        <h2>Etapas e Requisitos</h2>
+                        <h2>Etapas e Requisitos</h2> 
                          
                         <h3>Requisitos Funcionais</h3>
                         <ul> 
@@ -522,7 +526,7 @@
                             <li><strong>Cálculo e Cobrança:</strong> Cálculo e cobrança de juros e IOF diariamente (regra de negócio crítica).</li>
                             <li><strong>Ajuste de Limite:</strong> Ajuste do limite contratado de acordo com disponibilidade (usabilidade e necessidade).</li>
                             <li><strong>Consulta:</strong> Consulta do limite contratado sem uso (disponível) (usabilidade e transparência).</li>
-                            <li><strong>Registro e Notificação:</strong> Registro da transação de crédito e notificação (usabilidade e transparência).</li> 
+                            <li><strong>Registro e Notificação:</strong> Registro da transação de crédito e notificação (usabilidade e transparência).</li>
                             <li><strong>Liquidação:</strong> Liquidação automática quando houver novo saldo na conta (regra de negócio).</li>
                         </ul>
         
@@ -533,7 +537,7 @@
                             <li><strong>Disponibilidade:</strong> 99,0% (operações e imagem/confiança do cliente).</li>
                             <li><strong>Escalabilidade:</strong> Aumento de 50% nas transações nos períodos de pico (datas de recebimento de salário, ou final de mês) (arquitetura).</li>
                         </ul>
-         
+          
                         <h3>Análise de Riscos e Dependências</h3>
                         <ul>
                             <li><strong>Falha de segurança:</strong> Fraude ou falha de criptografia/autenticação. (Dependência: SecOps - equipe de segurança).</li>
@@ -542,7 +546,7 @@
                             <li><strong>Técnico:</strong> Falha na integração com outros módulos (ex: extrato). (Dependência: Módulo/API de extrato).</li>
                         </ul>
 
-                        <h2>🚀 Evolução do Produto e Feedback</h2> 
+                        <h2>🚀 Evolução do Produto e Feedback</h2>
                          
                         <h3>Evolução Futura</h3>
                         <p>O produto poderá evoluir para incluir:</p>
@@ -551,16 +555,16 @@
                             <li>Integração do produto com Carteira digital (Google Wallets).</li>
                             <li>Integração do produto aos painéis de crédito e Raio-X do cliente.</li>
                         </ul>
- 
+  
                         <h3>Coleta de Feedback</h3>
                         <p>Deixe seu feedback e ideias de melhoria a partir do link abaixo:</p>
-                         
+                          
                         <a href="https://forms.office.com/r/Y7hEVPawpS" class="feedback-link" target="_blank">Banco MKZ – Preencher o formulário</a>
 
                     </div>
                 </section>
 
-                <section class="section" id="padronizacao"> 
+                <section class="section" id="padronizacao">
                     <h2 class="section-title">📋 Padronização</h2>
                     <div class="content-page">
                         <h2>Padrões e Nomenclaturas</h2>
@@ -572,23 +576,23 @@
                             <li>Sem acentos, espaços ou caracteres especiais.</li>
                             <li>Use nomes curtos, descritivos e versionáveis.</li>
                         </ul>
-         
+          
                         <h3>Repositórios</h3>
                         <ul>
                             <li><code>mkz-overdraft-pipeline</code> (pipeline de dados)</li>
                             <li><code>mkz-overdraft-service</code> (serviços/Apis)</li>
                             <li><code>mkz-overdraft-analytics</code> (dashboards e notebooks)</li>
                         </ul>
-         
+          
                         <h3>Branches (Git Flow simplificado)</h3>
                         <ul>
                             <li><code>main</code> (estável)</li>
                             <li><code>develop</code> (integração)</li>
                             <li><code>feat/&lt;resumo&gt;</code></li>
                             <li><code>fix/&lt;resumo&gt;</code></li>
-                            <li><code>hotfix/&lt;resumo&gt;</code></li>
+                            <li><code>hotfix/&lt;resumo&gt;</code></li> 
                         </ul>
-         
+          
                         <h3>Commits (Conventional Commits)</h3>
                         <ul>
                             <li><code>feat: calcula juros diários</code></li>
@@ -596,7 +600,7 @@
                             <li><code>chore: adiciona pre-commit</code></li>
                             <li><code>docs: atualiza runbook</code></li>
                         </ul> 
-        
+         
                         <h3>Tags/Versões (SemVer)</h3>
                         <ul>
                             <li><code>vMAJOR.MINOR.PATCH</code> (ex.: <code>v1.2.0</code>)</li>
@@ -619,7 +623,7 @@
     ├── Nb_RelatorioVendas.ipynb
     └── Nb_RelatorioVendas_ShiftLeft.ipynb
 </code></pre>
-                         
+                          
                         <details>
                             <summary>Notebook: Análise Exploratória (Nb_Exploratoria.ipynb)</summary>
                             <pre><code># --- Célula de Código 1 ---
@@ -738,11 +742,11 @@ print(media_mensal)
 # --- Célula de Código 4 ---
 </code></pre>
                         </details>
-                         
+                          
                     </div>
                 </section>
 
-                <section class="section" id="pipeline"> 
+                <section class="section" id="pipeline">
                     <h2 class="section-title">🧭 Pipeline: Análise de Crédito</h2>
                     <div class="content-page">
                         <h2>Visão Geral: Fluxo ETL (Extract → Transform → Load)</h2>
@@ -753,13 +757,13 @@ print(media_mensal)
                         <ul>
                             <li><code>dados_credito_clientes_2024.csv</code></li>
                         </ul>
-                         
+                          
                         <details>
                             <summary>Ver Amostra de Dados (dados_credito_clientes_2024.csv)</summary>
                             <div>
 <table border="1" class="dataframe data-sample-table">
   <thead>
-    <tr style="text-align: right;">
+    <tr class="text-right">
       <th>Identificacao_Cliente</th>
       <th>Valor_Contratado</th>
       <th>Taxa_Praticada</th>
@@ -807,7 +811,7 @@ print(media_mensal)
 </table>
                             </div>
                         </details>
-                         
+                          
                         <h4>Contém:</h4>
                         <ul>
                             <li>Identificação do cliente</li>
@@ -816,7 +820,7 @@ print(media_mensal)
                             <li>Valor total disponibilizado</li>
                             <li>Data de contratação</li>
                         </ul>
-                        <h4>Etapas:</h4> 
+                        <h4>Etapas:</h4>
                         <ul>
                             <li>Importar CSV com <code>pandas.read_csv()</code>.</li>
                             <li>Validar tipos de dados (numéricos, datas).</li>
@@ -832,7 +836,7 @@ print(media_mensal)
                             <li>Garantir que <code>Valor_Contratado</code>, <code>Valor_Total_Disponibilizado</code> e <code>Taxa_Praticada</code> sejam numéricos.</li>
                         </ul>
                         <h4>Criação de campo derivado:</h4>
-                        <ul>
+                        <ul> 
                             <li><code>Indice_Utilizacao = Valor_Contratado / Valor_Total_Disponibilizado</code></li> 
                         </ul>
                         <h4>Validação de intervalos:</h4>
@@ -872,7 +876,7 @@ print(media_mensal)
                             <li>Relatórios automatizados (<code>.xlsx</code> / dashboards Power BI ou Tableau)</li>
                             <li>Visualizações (gráficos com <code>matplotlib</code> / <code>seaborn</code>)</li>
                         </ul>
-                         
+                          
                         <h2>Códigos-Fonte dos Notebooks</h2>
 
                         <details>
@@ -947,7 +951,7 @@ print(&amp;quot;\nArquivo &amp;#x27;relatorio_vendas.csv&amp;#x27; gerado com su
 # --- Célula de Código 2 ---
 </code></pre>
                         </details>
-
+ 
                         <details>
                             <summary>Notebook: Pipeline com Testes (Nb_RelatorioVendas_ShiftLeft.ipynb)</summary>
                             <pre><code># --- Célula de Código 1 ---
@@ -1077,13 +1081,13 @@ else:
                         </table>
 
                         <h3>3. Como Rodar o Script</h3>
-                        <h4>Pré-requisitos:</h4> 
+                        <h4>Pré-requisitos:</h4>
                         <ul>
                             <li>Python 3.8+</li>
                             <li>Bibliotecas instaladas: <code>pip install pandas numpy matplotlib</code></li>
                             <li>Arquivo de entrada disponível: <code>dados_credito_clientes_2024.csv</code></li>
                         </ul>
-                        <h4>Execução:</h4> 
+                        <h4>Execução:</h4>
                         <ol>
                             <li>Salve o script ETL (ex: <code>Nb_RelatorioVendas.ipynb</code>).</li>
                             <li>No terminal, execute: <pre><code>python Nb_RelatorioVendas.ipynb</code></pre></li>
@@ -1091,7 +1095,7 @@ else:
                         </ol>
 
                         <h3>4. Estrutura Esperada dos Arquivos</h3>
-                        <h4>Entrada: DADOS</h4> 
+                        <h4>Entrada: DADOS</h4>
                         <table>
                             <thead>
                                 <tr>
@@ -1202,11 +1206,11 @@ else:
                         </ul>
 
                         <h3>ETAPA 2 — Qualidade dos Dados (Transform - Limpeza)</h3>
-                        <ul> 
+                        <ul>
                             <li>☑️ Tipos de dados coerentes (float, datetime, etc.)?</li>
                             <li>☑️ Datas convertidas corretamente (YYYYMMDD → datetime)?</li>
                             <li>☑️ Nenhum valor NaN em colunas críticas (Valor_Contratado, Taxa_Praticada, Valor_Total_Disponibilizado)?</li>
-                            <li>☑️ Nenhum valor negativo ou zero indevido nos campos monetários?</li> 
+                            <li>☑️ Nenhum valor negativo ou zero indevido nos campos monetários?</li>
                             <li>☑️ Índice de utilização dentro de faixa lógica (0 &lt; índice ≤ 1)?</li>
                         </ul>
 
@@ -1216,13 +1220,13 @@ else:
                             <li>☑️ Resultados numéricos coerentes (ex: média dentro do intervalo min–max)?</li>
                         </ul>
 
-                        <h3>ETAPA 4 — Saída (Load)</h3> 
+                        <h3>ETAPA 4 — Saída (Load)</h3>
                         <ul>
                             <li>☑️ Arquivo de saída (relatorio_vendas.csv) gerado com sucesso?</li>
                             <li>☑️ Colunas e formato corretos?</li>
                             <li>☑️ Tamanho e número de linhas condizentes com a entrada filtrada?</li>
                         </ul>
- 
+  
                         <h3>ETAPA 5 — Logs e Monitoramento</h3>
                         <ul>
                             <li>☑️ Erros e exceções registrados (log)?</li>
@@ -1231,7 +1235,7 @@ else:
                         </ul>
                     </div>
                 </section>
-                 
+                  
                 <section class="section" id="contribuindo">
                     <h2 class="section-title">Contribuindo</h2>
                     <div class="content-page">
@@ -1247,7 +1251,7 @@ else:
                 <footer>
                     <p>&copy; 2025 Overdraft Project. Documentação mantida pelo time técnico.</p>
                     <p class="footer-last-update">Última atualização: Novembro 2025</p>
-                </footer> 
+                </footer>
             </div>
         </main>
     </div>
@@ -1307,7 +1311,7 @@ else:
                 let current = 'documentacao'; // Mudei o default para a nova primeira seção
                 
                 // O 150 é um offset para "sentir" a seção um pouco antes
-                sections.forEach(section => {
+                sections.forEach(section => { 
                     const sectionTop = section.offsetTop;
                     if (window.scrollY >= sectionTop - 150) { 
                         current = section.getAttribute('id');
